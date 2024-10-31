@@ -7,4 +7,4 @@
 `bun run lint:fix`
 `bun run format`
 
-## edit the config in `./src/utils/effects.js` to change the animations
+edit the config in `./src/utils/effects.js` to change the animations
