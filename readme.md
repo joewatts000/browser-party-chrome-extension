@@ -8,6 +8,7 @@ Covers the current webpage with animations:
 - party mode (all)
 
 `bun install` - installs packages
+
 `bun run dev`
 `bun run build`
 `bun run lint`
