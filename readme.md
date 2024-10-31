@@ -19,4 +19,4 @@ Covers the current webpage with animations:
 
 `bun run format` - with prettier
 
-edit the config in `./src/utils/effects.js` to change the animations
+Edit the config in `./src/utils/effects.js` to change the animations
