@@ -9,10 +9,14 @@ Covers the current webpage with animations:
 
 `bun install` - installs packages
 
-`bun run dev`
+`bun run dev` - hot rebuild
+
 `bun run build`
-`bun run lint`
+
+`bun run lint` - eslint
+
 `bun run lint:fix`
-`bun run format`
+
+`bun run format` - with prettier
 
 edit the config in `./src/utils/effects.js` to change the animations
