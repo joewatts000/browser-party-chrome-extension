@@ -159,6 +159,7 @@ export const createSparkles = () => {
         position: fixed;
         pointer-events: none;
         transform-origin: center;
+        z-index: 999999;
       }
       
       .sparkle::before {
@@ -232,7 +233,7 @@ export const createSparkles = () => {
 
       document.body.appendChild(sparkle);
 
-      setTimeout(() => sparkle.remove(), duration * 1000);
+      setTimeout(() => sparkle.remove(), parseFloat(duration) * 1000);
     }
   };
 
@@ -250,6 +251,7 @@ export const createFireworks = () => {
       .firework {
         position: fixed;
         pointer-events: none;
+        z-index: 999999;
       }
 
       .firework-particle {
@@ -402,7 +404,7 @@ export const createExplosion = () => {
       .explosion-container {
         position: fixed;
         pointer-events: none;
-        z-index: 9999;
+        z-index: 999999;
       }
       
       .explosion-particle {
@@ -514,11 +516,11 @@ export const createExplosion = () => {
       particle.style.setProperty('--duration', `${duration}s`);
       particle.style.setProperty(
         '--initial-opacity',
-        CONFIG.explosions.particles.opacity.initial
+        `${CONFIG.explosions.particles.opacity.initial}`
       );
       particle.style.setProperty(
         '--final-opacity',
-        CONFIG.explosions.particles.opacity.final
+        `${CONFIG.explosions.particles.opacity.final}`
       );
       particle.style.backgroundColor =
         CONFIG.explosions.particles.colors[
@@ -541,7 +543,7 @@ export const createExplosion = () => {
   };
 
   for (let i = 0; i < CONFIG.explosions.count; i++) {
-    createSingleExplosion(i * CONFIG.explosions.launchDelay);
+    createSingleExplosion();
   }
 };
 

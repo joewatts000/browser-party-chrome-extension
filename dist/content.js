@@ -1,4 +1,4 @@
-// src/utils/effects.js
+// src/utils/effects.ts
 var CONFIG = {
   sparkles: {
     burstsCount: 5,
@@ -132,6 +132,7 @@ var createSparkles = () => {
         position: fixed;
         pointer-events: none;
         transform-origin: center;
+        z-index: 999999;
       }
       
       .sparkle::before {
@@ -176,7 +177,7 @@ var createSparkles = () => {
       const duration = (Math.random() * (CONFIG.sparkles.duration.max - CONFIG.sparkles.duration.min) + CONFIG.sparkles.duration.min).toFixed(2);
       sparkle.style.setProperty("--duration", `${duration}s`);
       document.body.appendChild(sparkle);
-      setTimeout(() => sparkle.remove(), duration * 1000);
+      setTimeout(() => sparkle.remove(), parseFloat(duration) * 1000);
     }
   };
   for (let i = 0;i < CONFIG.sparkles.burstsCount; i++) {
@@ -191,6 +192,7 @@ var createFireworks = () => {
       .firework {
         position: fixed;
         pointer-events: none;
+        z-index: 999999;
       }
 
       .firework-particle {
@@ -282,7 +284,7 @@ var createExplosion = () => {
       .explosion-container {
         position: fixed;
         pointer-events: none;
-        z-index: 9999;
+        z-index: 999999;
       }
       
       .explosion-particle {
@@ -351,8 +353,8 @@ var createExplosion = () => {
       particle.style.setProperty("--dx", `${dx}px`);
       particle.style.setProperty("--dy", `${dy}px`);
       particle.style.setProperty("--duration", `${duration}s`);
-      particle.style.setProperty("--initial-opacity", CONFIG.explosions.particles.opacity.initial);
-      particle.style.setProperty("--final-opacity", CONFIG.explosions.particles.opacity.final);
+      particle.style.setProperty("--initial-opacity", `${CONFIG.explosions.particles.opacity.initial}`);
+      particle.style.setProperty("--final-opacity", `${CONFIG.explosions.particles.opacity.final}`);
       particle.style.backgroundColor = CONFIG.explosions.particles.colors[Math.floor(Math.random() * CONFIG.explosions.particles.colors.length)];
       container.appendChild(particle);
     }
@@ -360,7 +362,7 @@ var createExplosion = () => {
     setTimeout(() => container.remove(), Math.max(CONFIG.explosions.duration.max * 1000, CONFIG.explosions.shockwave.duration * 1000));
   };
   for (let i = 0;i < CONFIG.explosions.count; i++) {
-    createSingleExplosion(i * CONFIG.explosions.launchDelay);
+    createSingleExplosion();
   }
 };
 var goNuclear = () => {
@@ -372,7 +374,9 @@ var goNuclear = () => {
 // src/content/index.js
 if (!window.hasContentScriptListener) {
   window.hasContentScriptListener = true;
+  document.body.insertAdjacentHTML("beforeend", '<div id="browser-party-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 999999; display: none;"></div>');
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    document.getElementById("browser-party-overlay").style.display = "block";
     if (message.effect === "sparkle") {
       createSparkles();
     } else if (message.effect === "firework") {
@@ -382,6 +386,11 @@ if (!window.hasContentScriptListener) {
     } else if (message.effect === "nuclear") {
       goNuclear();
     }
+    setInterval(() => {
+      if (!document.querySelector(".sparkle") && !document.querySelector(".firework") && !document.querySelector(".explosion-container")) {
+        document.getElementById("browser-party-overlay").style.display = "none";
+      }
+    }, 1000);
     sendResponse({ success: true });
     return true;
   });
