@@ -1,8 +1,8 @@
 const CONFIG = {
   explosions: {
     // Overall settings
-    count: 6, // Number of explosiont to launch
-    launchDelay: 300, // Delay between launches (ms)
+    count: 10, // Number of explosiont to launch
+    launchDelay: 500, // Delay between launches (ms)
     particleCount: {
       min: 30,
       max: 50,

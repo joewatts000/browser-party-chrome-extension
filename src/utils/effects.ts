@@ -1,5 +1,5 @@
-import { releaseExplosions } from './explosions';
-import { releaseFireworks } from './fireworks';
+import { explosionStyles, releaseExplosions } from './explosions';
+import { fireworkStyles, releaseFireworks } from './fireworks';
 import { releaseSparkles, sparkleStyles } from './sparkles';
 
 const insertStyles = (styles: string, id: string) => {
@@ -18,12 +18,12 @@ export const createSparkles = () => {
 };
 
 export const createFireworks = () => {
-  insertStyles(sparkleStyles, 'firework-styles');
+  insertStyles(fireworkStyles, 'firework-styles');
   releaseFireworks();
 };
 
 export const createExplosion = () => {
-  insertStyles(sparkleStyles, 'explosion-styles');
+  insertStyles(explosionStyles, 'explosion-styles');
   releaseExplosions();
 };
 
@@ -31,4 +31,11 @@ export const goNuclear = () => {
   createSparkles();
   createFireworks();
   createExplosion();
+  setTimeout(() => {
+    createExplosion();
+  }, 1000);
+
+  setTimeout(() => {
+    createFireworks();
+  }, 2000);
 };
