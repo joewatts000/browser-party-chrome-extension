@@ -1,44 +1,35 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <style>
-    body { 
-      width: 200px; 
-      padding: 10px; 
+    body {
+      width: 160px;
+      padding: 10px 30px;
+      background-color: #333;
     }
-    button { 
-      width: 100%; 
-      padding: 8px; 
-      margin-bottom: 8px; 
-      border-radius: 16px; 
+
+    button {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 8px;
+      border-radius: 16px;
       border: 1px solid transparent;
-      background-color: #fff; 
-      cursor: pointer; 
-      font-weight: bold;
-    }
-    button:hover {
       background-color: #fff;
       color: #333;
-      border: 1px solid #333;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.5s, color 0.5s, border-color 0.5s;
     }
-    .sparkle {
-      background-color: #ffec83;
-      color: #333;
-    }
-    .firework {
-      background-color: #581bff;
+
+    button:hover {
+      background-color: #333;
       color: #fff;
-    }
-    .explosion {
-      background-color: #ff782b;
-      color: #fff;
-    }
-    .nuclear {
-      background-color: #27d071;
-      color: #333;
+      border-color: #fff;
     }
   </style>
 </head>
+
 <body>
   <button id="sparkle" class="sparkle">Sparkles</button>
   <button id="firework" class="firework">Fireworks</button>
@@ -46,4 +37,5 @@
   <button id="nuclear" class="nuclear">Party</button>
   <script src="popup.js"></script>
 </body>
+
 </html>

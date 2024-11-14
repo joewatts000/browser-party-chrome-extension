@@ -387,6 +387,7 @@ var goNuclear = () => {
   createExplosion();
   setTimeout(() => {
     createExplosion();
+    createFireworks();
   }, 1000);
   setTimeout(() => {
     createFireworks();
